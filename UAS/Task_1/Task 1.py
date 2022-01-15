@@ -5,21 +5,22 @@ import math
 file_1 = open(r'File_1.txt', 'r')
 file_2 = open(r'File_2.txt', 'r')
 
-velocity = 0    # Defining the velocity variable
+velocity, height = 0, 0    # Defining the velocity and height variables
 
 
 def distance(f1, f2):
     a11 = f1.read()  # Reading data from both files
     a21 = f2.read()
-    a12 = a11.split()  # Converting it into a list
-    a22 = a21.split()
+    a12 = a11.split(',')  # Converting it into a list
+    a22 = a21.split(',')
 
     lat_p = float(a12[0])  # Extracting data from the list
     lat_target = float(a22[0])  # and storing it into the co-ordinate variables
     lon_p = float(a12[1])
     lon_target = float(a22[1])
-    global velocity     # Making it global variable
+    global velocity, height     # Making it global variable
     velocity = float(a12[2])  # in m/s
+    height = float(a12[4])  # in meters
 
     earth_radius = 6371e3  # metres
     d1 = lat_p * math.pi / 180  # d1, d2 in radians
@@ -36,8 +37,8 @@ def distance(f1, f2):
 
 dis_between = distance(file_1, file_2)  # calling the distance function for the required files
 
-height = 20  # in meters
 g = 9.8  # acceleration due to gravity
+wind_speed = 2 # in m/s
 r = velocity * (math.sqrt(height * 2 / g))
 # r1 = velocity * velocity / g  # The formula for angular projectile
 
