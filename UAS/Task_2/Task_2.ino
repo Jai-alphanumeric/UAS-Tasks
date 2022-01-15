@@ -1,3 +1,5 @@
+// UAS Avionics Round 2 Task 2
+// Jai A17/01
 int ldr=A0;                               //Set A0(Analog Input) for LDR.
 int value=0;
 void setup() {
