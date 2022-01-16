@@ -36,12 +36,26 @@ def distance(f1, f2):
     return d
 
 
+def drag(mass_, radius_):   # for the air drag
+    cd = 0.5    # For sphere drag coefficient is 0.5
+    volume = (4 * math.pi * radius_**3) / 3
+    density = mass_ / volume
+    area = 4 * math.pi * radius * radius_
+
+    drag_force = cd * density * volume * volume * area * 0.5
+    weight = mass * g
+    net_acc = (weight - drag_force) / mass_
+    return net_acc
+
+
 dis_between = distance(file_1, file_2)  # calling the distance function for the required files
 
 g = 9.8  # acceleration due to gravity
 velocity = math.sqrt(velocity_x**2 + velocity_y**2)
-wind_speed = 2  # in m/s
-r = velocity * (math.sqrt(height * 2 / g))
+mass = 1.5  # in kg
+radius = 5  # in cm
+final_acc = drag(mass, radius/100)
+r = velocity * (math.sqrt(height * 2 / final_acc))
 # r1 = velocity * velocity / g  # The formula for angular projectile
 
 if r == dis_between:
